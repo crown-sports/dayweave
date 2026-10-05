@@ -1,0 +1,7 @@
+include LICENSE NOTICE README.md README.zh-CN.md pyproject.toml launch.py Start-DayWeave.command Start-DayWeave.cmd
+recursive-include src/dayweave/ui *.html *.css *.js
+include src/dayweave/py.typed
+recursive-include tests *.py
+recursive-include benchmarks *.py
+recursive-include docs *.md *.json *.jsonl *.txt *.jpg
+global-exclude __pycache__ *.pyc .DS_Store

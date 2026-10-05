@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-10-05T02:14:45.844788+00:00",
+  "system": "Darwin",
+  "machine": "arm64",
+  "cpu": "Apple M5",
+  "ram_bytes": 25769803776,
+  "python": "3.12.12",
+  "source_sha256": "429203638dd2f7f73214bad8a5cad04cc1857317445742ae693cf12794481c14"
+}

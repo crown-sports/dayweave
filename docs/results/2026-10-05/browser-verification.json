@@ -1,0 +1,102 @@
+{
+  "kind": "manual_browser_observations",
+  "recorded_at": "2026-10-05T02:14:45.843133+00:00",
+  "source_sha256": "24e867930127515be267c2585d8289f895f1392ccb3a96695d7b3d8633b6a7c8",
+  "data": "Public synthetic examples and manually entered synthetic tasks; no private user calendars.",
+  "checks": [
+    {
+      "workflow": "balanced_plan",
+      "scheduled_tasks": 8,
+      "scheduled_minutes": 630,
+      "passed": true
+    },
+    {
+      "workflow": "pin_and_insert_appointment",
+      "changed_existing_tasks": 1,
+      "start_displacement_minutes": 435,
+      "pinned_task_preserved": true,
+      "passed": true
+    },
+    {
+      "workflow": "overload_and_explicit_postponement",
+      "required_minutes": 240,
+      "available_minutes": 180,
+      "deficit_minutes": 60,
+      "export_disabled_until_user_choice": true,
+      "passed": true
+    },
+    {
+      "workflow": "real_ics_download_and_parser_roundtrip",
+      "task_events": 2,
+      "appointments_duplicated": false,
+      "passed": true
+    },
+    {
+      "workflow": "personal_capture_review",
+      "entered_minutes": [
+        90,
+        45
+      ],
+      "last_focused_field_committed": true,
+      "respects_current_time": true,
+      "passed": true
+    },
+    {
+      "workflow": "recurring_calendar_import",
+      "daily_occurrences": 3,
+      "excluded_occurrences": 1,
+      "imported_occurrences": 2,
+      "evening_event_visible": true,
+      "passed": true
+    },
+    {
+      "workflow": "real_json_backup_and_restore",
+      "restored_task_minutes": [
+        90,
+        45
+      ],
+      "restored_appointments": 2,
+      "recompute_required": true,
+      "passed": true
+    },
+    {
+      "workflow": "responsive_layout",
+      "viewports": [
+        {
+          "width": 375,
+          "height": 812,
+          "body_scroll_width": 375,
+          "calendar_client_width": 343,
+          "calendar_scroll_width": 650
+        },
+        {
+          "width": 1280,
+          "body_scroll_width": 1280,
+          "calendar_client_width": 858,
+          "calendar_scroll_width": 858
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "screenshots": {
+    "workbench.jpg": {
+      "sha256": "d08f63e276a79db282442ad9745516fb23ea1915f8e4f0e67b897670c8a8db48",
+      "generated_from": "Actual browser rendering of accepted plan or conflict; no mock output."
+    },
+    "overload.jpg": {
+      "sha256": "580839778007405360f0652c3c7fec3a254c14ece2bc9be2fecb3c62416b98c5",
+      "generated_from": "Actual browser rendering of accepted plan or conflict; no mock output."
+    }
+  },
+  "prior_observations_source_sha256": "429203638dd2f7f73214bad8a5cad04cc1857317445742ae693cf12794481c14",
+  "release_recheck": {
+    "recorded_at": "2026-10-05T02:23:36.214785+00:00",
+    "complete_plan_and_pin_and_insert": true,
+    "scheduled_tasks": 8,
+    "scheduled_minutes": 630,
+    "changed_tasks": 1,
+    "displacement_minutes": 435,
+    "note": "Earlier import, capture, download and responsive observations used the same runtime code. The final revision updates project metadata and the documentation link to the current GitHub username."
+  }
+}

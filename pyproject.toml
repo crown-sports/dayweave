@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dayweave"
+version = "0.1.0"
+readme = "README.md"
+authors = [{name = "Chris Chen"}]
+description = "A personal planner that fits real constraints, explains overload, and replans with less disruption"
+requires-python = ">=3.11"
+license = "MIT"
+
+dependencies = ["ortools>=9.14,<10", "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "icalendar>=6,<8", "recurring-ical-events>=3.3,<4"]
+
+[project.urls]
+Homepage = "https://github.com/crown-sports/dayweave"
+Issues = "https://github.com/crown-sports/dayweave/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "mypy>=1.15,<2", "httpx>=0.28,<1", "build>=1.2,<2", "types-python-dateutil"]
+model = ["transformers>=4.57,<5", "torch>=2.8,<3"]
+
+[project.scripts]
+dayweave = "dayweave.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dayweave = ["ui/*.html", "ui/*.css", "ui/*.js", "py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"launch.py" = ["UP036"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[[tool.mypy.overrides]]
+module = ["ortools.*", "icalendar.*", "recurring_ical_events.*", "torch.*", "transformers.*", "uvicorn.*"]
+ignore_missing_imports = true
+follow_imports = "skip"

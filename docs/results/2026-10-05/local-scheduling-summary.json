@@ -1,0 +1,279 @@
+{
+  "seed": 20261005,
+  "source_sha256": "24e867930127515be267c2585d8289f895f1392ccb3a96695d7b3d8633b6a7c8",
+  "created_at": "2026-10-05T02:20:03.996543+00:00",
+  "python": "3.12.12",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "versions": {
+    "dayweave": "0.1.0",
+    "ortools": "9.15.6755",
+    "numpy": "2.5.3",
+    "icalendar": "7.3.0",
+    "recurring-ical-events": "3.8.2"
+  },
+  "solve_budget_seconds": 3,
+  "case_count": 210,
+  "suites": {
+    "constrained_replanning": {
+      "cases": 32,
+      "methods": {
+        "dayweave": {
+          "valid_complete": 32,
+          "proven_all_objectives": 32,
+          "median_ms": 8.52,
+          "p95_ms": 9.603
+        },
+        "earliest_deadline": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.123,
+          "p95_ms": 0.133
+        },
+        "priority_first": {
+          "valid_complete": 22,
+          "proven_all_objectives": 0,
+          "median_ms": 0.108,
+          "p95_ms": 0.13
+        },
+        "preserve_then_edf": {
+          "valid_complete": 0,
+          "proven_all_objectives": 0,
+          "median_ms": 0.099,
+          "p95_ms": 0.12
+        },
+        "preserve_or_rebuild": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.205,
+          "p95_ms": 0.25
+        }
+      },
+      "common_valid_denominator": 0,
+      "mean_changed_on_common_valid": {
+        "dayweave": null,
+        "earliest_deadline": null,
+        "priority_first": null,
+        "preserve_then_edf": null,
+        "preserve_or_rebuild": null
+      },
+      "mean_changed_on_each_methods_valid_cases": {
+        "dayweave": 2,
+        "earliest_deadline": 9.125,
+        "priority_first": 9.272727272727273,
+        "preserve_then_edf": null,
+        "preserve_or_rebuild": 9.125
+      },
+      "known_minimum_agreements": 32,
+      "pairwise_changes": {
+        "earliest_deadline": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 2,
+          "baseline_mean_changed": 9.125
+        },
+        "priority_first": {
+          "common_valid_denominator": 22,
+          "dayweave_mean_changed": 2,
+          "baseline_mean_changed": 9.272727272727273
+        },
+        "preserve_then_edf": {
+          "common_valid_denominator": 0,
+          "dayweave_mean_changed": null,
+          "baseline_mean_changed": null
+        },
+        "preserve_or_rebuild": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 2,
+          "baseline_mean_changed": 9.125
+        }
+      }
+    },
+    "constructed_feasible": {
+      "cases": 48,
+      "methods": {
+        "dayweave": {
+          "valid_complete": 48,
+          "proven_all_objectives": 48,
+          "median_ms": 3.587,
+          "p95_ms": 6.717
+        },
+        "earliest_deadline": {
+          "valid_complete": 34,
+          "proven_all_objectives": 0,
+          "median_ms": 0.157,
+          "p95_ms": 0.188
+        },
+        "priority_first": {
+          "valid_complete": 3,
+          "proven_all_objectives": 0,
+          "median_ms": 0.141,
+          "p95_ms": 0.161
+        },
+        "preserve_then_edf": {
+          "valid_complete": 34,
+          "proven_all_objectives": 0,
+          "median_ms": 0.146,
+          "p95_ms": 0.182
+        },
+        "preserve_or_rebuild": {
+          "valid_complete": 34,
+          "proven_all_objectives": 0,
+          "median_ms": 0.165,
+          "p95_ms": 0.327
+        }
+      }
+    },
+    "exhaustive": {
+      "cases": 96,
+      "methods": {
+        "dayweave": {
+          "valid_complete": 79,
+          "proven_all_objectives": 79,
+          "median_ms": 2.412,
+          "p95_ms": 4.517
+        },
+        "earliest_deadline": {
+          "valid_complete": 79,
+          "proven_all_objectives": 0,
+          "median_ms": 0.033,
+          "p95_ms": 0.05
+        },
+        "priority_first": {
+          "valid_complete": 74,
+          "proven_all_objectives": 0,
+          "median_ms": 0.026,
+          "p95_ms": 0.034
+        },
+        "preserve_then_edf": {
+          "valid_complete": 74,
+          "proven_all_objectives": 0,
+          "median_ms": 0.032,
+          "p95_ms": 0.05
+        },
+        "preserve_or_rebuild": {
+          "valid_complete": 79,
+          "proven_all_objectives": 0,
+          "median_ms": 0.032,
+          "p95_ms": 0.057
+        }
+      },
+      "oracle_agreements": 96,
+      "independently_checked_conflict_cores": 17
+    },
+    "stable_replanning": {
+      "cases": 32,
+      "methods": {
+        "dayweave": {
+          "valid_complete": 32,
+          "proven_all_objectives": 32,
+          "median_ms": 9.119,
+          "p95_ms": 9.843
+        },
+        "earliest_deadline": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.121,
+          "p95_ms": 0.134
+        },
+        "priority_first": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.106,
+          "p95_ms": 0.112
+        },
+        "preserve_then_edf": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.105,
+          "p95_ms": 0.135
+        },
+        "preserve_or_rebuild": {
+          "valid_complete": 32,
+          "proven_all_objectives": 0,
+          "median_ms": 0.099,
+          "p95_ms": 0.112
+        }
+      },
+      "common_valid_denominator": 32,
+      "mean_changed_on_common_valid": {
+        "dayweave": 1,
+        "earliest_deadline": 8.875,
+        "priority_first": 8.875,
+        "preserve_then_edf": 1,
+        "preserve_or_rebuild": 1
+      },
+      "mean_changed_on_each_methods_valid_cases": {
+        "dayweave": 1,
+        "earliest_deadline": 8.875,
+        "priority_first": 8.875,
+        "preserve_then_edf": 1,
+        "preserve_or_rebuild": 1
+      },
+      "known_minimum_agreements": 32,
+      "pairwise_changes": {
+        "earliest_deadline": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 1,
+          "baseline_mean_changed": 8.875
+        },
+        "priority_first": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 1,
+          "baseline_mean_changed": 8.875
+        },
+        "preserve_then_edf": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 1,
+          "baseline_mean_changed": 1
+        },
+        "preserve_or_rebuild": {
+          "common_valid_denominator": 32,
+          "dayweave_mean_changed": 1,
+          "baseline_mean_changed": 1
+        }
+      }
+    },
+    "worked_examples": {
+      "cases": 2,
+      "methods": {
+        "dayweave": {
+          "valid_complete": 1,
+          "proven_all_objectives": 1,
+          "median_ms": 2.351,
+          "p95_ms": 3.963
+        },
+        "earliest_deadline": {
+          "valid_complete": 0,
+          "proven_all_objectives": 0,
+          "median_ms": 0.024,
+          "p95_ms": 0.03
+        },
+        "priority_first": {
+          "valid_complete": 0,
+          "proven_all_objectives": 0,
+          "median_ms": 0.018,
+          "p95_ms": 0.022
+        },
+        "preserve_then_edf": {
+          "valid_complete": 0,
+          "proven_all_objectives": 0,
+          "median_ms": 0.018,
+          "p95_ms": 0.023
+        },
+        "preserve_or_rebuild": {
+          "valid_complete": 0,
+          "proven_all_objectives": 0,
+          "median_ms": 0.031,
+          "p95_ms": 0.039
+        }
+      }
+    }
+  },
+  "limits": "Synthetic fixtures; no measured human productivity or superiority to commercial planning tools.",
+  "artifact_sha256": {
+    "cases.json": "5ba4ed8e32c8655a4eb131be9b88f979fb18ccedfb3525a66fcb68c76369bb42",
+    "results.jsonl": "718a52d79ca55e2a0cadaa44ac6a15c55e9337eb6bd85518387fa968b3732777"
+  }
+}

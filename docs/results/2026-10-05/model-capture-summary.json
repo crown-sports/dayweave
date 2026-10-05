@@ -1,0 +1,144 @@
+{
+  "created_at": "2026-10-05T02:20:57.576361+00:00",
+  "source_sha256": "24e867930127515be267c2585d8289f895f1392ccb3a96695d7b3d8633b6a7c8",
+  "python": "3.12.14",
+  "platform": {
+    "system": "Linux",
+    "machine": "x86_64"
+  },
+  "versions": {
+    "dayweave": "0.1.0",
+    "torch": "2.8.0",
+    "transformers": "4.57.6",
+    "ortools": "9.15.6755"
+  },
+  "case_count": 18,
+  "model": "Qwen3-4B-Instruct-2507",
+  "styles": {
+    "structured": {
+      "offline": {
+        "gold_tasks": 27,
+        "returned_items": 27,
+        "matched_tasks": 27,
+        "false_positive_items": 0,
+        "exact_title_matches": 27,
+        "duration_correct": 27,
+        "deadline_correct": 27,
+        "all_fields_correct": 27,
+        "unresolved_fields_in_gold": 8,
+        "invented_absent_fields": 0,
+        "notes": 9,
+        "direct_model_accepted": 0,
+        "fallback_notes": 0,
+        "median_ms": 0.369,
+        "task_precision": 1.0,
+        "task_recall": 1.0,
+        "all_fields_correct_rate": 1.0
+      },
+      "configured_model": {
+        "gold_tasks": 27,
+        "returned_items": 27,
+        "matched_tasks": 27,
+        "false_positive_items": 0,
+        "exact_title_matches": 27,
+        "duration_correct": 27,
+        "deadline_correct": 27,
+        "all_fields_correct": 27,
+        "unresolved_fields_in_gold": 8,
+        "invented_absent_fields": 0,
+        "notes": 9,
+        "direct_model_accepted": 0,
+        "fallback_notes": 0,
+        "median_ms": 0.287,
+        "task_precision": 1.0,
+        "task_recall": 1.0,
+        "all_fields_correct_rate": 1.0
+      }
+    },
+    "prose": {
+      "offline": {
+        "gold_tasks": 27,
+        "returned_items": 9,
+        "matched_tasks": 0,
+        "false_positive_items": 9,
+        "exact_title_matches": 0,
+        "duration_correct": 0,
+        "deadline_correct": 0,
+        "all_fields_correct": 0,
+        "unresolved_fields_in_gold": 8,
+        "invented_absent_fields": 0,
+        "notes": 9,
+        "direct_model_accepted": 0,
+        "fallback_notes": 0,
+        "median_ms": 0.164,
+        "task_precision": 0.0,
+        "task_recall": 0.0,
+        "all_fields_correct_rate": 0.0
+      },
+      "configured_model": {
+        "gold_tasks": 27,
+        "returned_items": 25,
+        "matched_tasks": 24,
+        "false_positive_items": 1,
+        "exact_title_matches": 24,
+        "duration_correct": 24,
+        "deadline_correct": 24,
+        "all_fields_correct": 24,
+        "unresolved_fields_in_gold": 8,
+        "invented_absent_fields": 0,
+        "notes": 9,
+        "direct_model_accepted": 8,
+        "fallback_notes": 1,
+        "median_ms": 1207.536,
+        "task_precision": 0.96,
+        "task_recall": 0.8888888888888888,
+        "all_fields_correct_rate": 0.8888888888888888
+      }
+    },
+    "all": {
+      "offline": {
+        "gold_tasks": 54,
+        "returned_items": 36,
+        "matched_tasks": 27,
+        "false_positive_items": 9,
+        "exact_title_matches": 27,
+        "duration_correct": 27,
+        "deadline_correct": 27,
+        "all_fields_correct": 27,
+        "unresolved_fields_in_gold": 16,
+        "invented_absent_fields": 0,
+        "notes": 18,
+        "direct_model_accepted": 0,
+        "fallback_notes": 0,
+        "median_ms": 0.243,
+        "task_precision": 0.75,
+        "task_recall": 0.5,
+        "all_fields_correct_rate": 0.5
+      },
+      "configured_model": {
+        "gold_tasks": 54,
+        "returned_items": 52,
+        "matched_tasks": 51,
+        "false_positive_items": 1,
+        "exact_title_matches": 51,
+        "duration_correct": 51,
+        "deadline_correct": 51,
+        "all_fields_correct": 51,
+        "unresolved_fields_in_gold": 16,
+        "invented_absent_fields": 0,
+        "notes": 18,
+        "direct_model_accepted": 8,
+        "fallback_notes": 1,
+        "median_ms": 430.99,
+        "task_precision": 0.9807692307692307,
+        "task_recall": 0.9444444444444444,
+        "all_fields_correct_rate": 0.9444444444444444
+      }
+    }
+  },
+  "limits": "18 synthetic public notes; no real-user extraction accuracy claim. Source membership is not semantic correctness.",
+  "artifact_sha256": {
+    "cases.json": "71d434cf6b8f548bd6b0fc40cbe337f52073c76801897a2a6c2604212879563f",
+    "results.jsonl": "dec50c960d2a221ec541fb8a45df6091869805c7383b5a4b3eb2622fcae6353c"
+  }
+}

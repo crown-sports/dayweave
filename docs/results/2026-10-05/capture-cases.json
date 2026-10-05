@@ -1,0 +1,434 @@
+[
+  {
+    "id": "capture-00-structured",
+    "style": "structured",
+    "text": "准备面试 | 90分钟 | 周三18:00前\n提交申请 | 半小时 | 周五17:00前\n买菜 | 时长待估计 | 期限未定",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "准备面试",
+        "duration": 90,
+        "deadline": "2026-10-07T18:00+08:00"
+      },
+      {
+        "title": "提交申请",
+        "duration": 30,
+        "deadline": "2026-10-09T17:00+08:00"
+      },
+      {
+        "title": "买菜",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-00-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。周三18:00前要准备面试，预计90分钟；周五17:00前要提交申请，预计半小时；还要买菜，时长还没有估计。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "准备面试",
+        "duration": 90,
+        "deadline": "2026-10-07T18:00+08:00"
+      },
+      {
+        "title": "提交申请",
+        "duration": 30,
+        "deadline": "2026-10-09T17:00+08:00"
+      },
+      {
+        "title": "买菜",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-01-structured",
+    "style": "structured",
+    "text": "复习英语 | 两小时 | 下周一10:00前\n运动 | 45分钟 | 明天20:00前\n打电话 | 15分钟 | 今天16:00前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "复习英语",
+        "duration": 120,
+        "deadline": "2026-10-12T10:00+08:00"
+      },
+      {
+        "title": "运动",
+        "duration": 45,
+        "deadline": "2026-10-06T20:00+08:00"
+      },
+      {
+        "title": "打电话",
+        "duration": 15,
+        "deadline": "2026-10-05T16:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-01-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。下周一10:00前要复习英语，预计两小时；明天20:00前要运动，预计45分钟；今天16:00前要打电话，预计15分钟。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "复习英语",
+        "duration": 120,
+        "deadline": "2026-10-12T10:00+08:00"
+      },
+      {
+        "title": "运动",
+        "duration": 45,
+        "deadline": "2026-10-06T20:00+08:00"
+      },
+      {
+        "title": "打电话",
+        "duration": 15,
+        "deadline": "2026-10-05T16:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-02-structured",
+    "style": "structured",
+    "text": "写课程论文 | 3小时 | 周五17:00前\n洗衣服 | 半小时 | 后天19:00前\n联系预约 | 时长待估计 | 期限未定",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "写课程论文",
+        "duration": 180,
+        "deadline": "2026-10-09T17:00+08:00"
+      },
+      {
+        "title": "洗衣服",
+        "duration": 30,
+        "deadline": "2026-10-07T19:00+08:00"
+      },
+      {
+        "title": "联系预约",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-02-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。周五17:00前要写课程论文，预计3小时；后天19:00前要洗衣服，预计半小时；还要联系预约，时长还没有估计。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "写课程论文",
+        "duration": 180,
+        "deadline": "2026-10-09T17:00+08:00"
+      },
+      {
+        "title": "洗衣服",
+        "duration": 30,
+        "deadline": "2026-10-07T19:00+08:00"
+      },
+      {
+        "title": "联系预约",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-03-structured",
+    "style": "structured",
+    "text": "备份照片 | 1小时 | 2026-10-09 21:00前\n理发 | 45分钟 | 周六14:00前\n整理收据 | 时长待估计 | 周五前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "备份照片",
+        "duration": 60,
+        "deadline": "2026-10-09T21:00+08:00"
+      },
+      {
+        "title": "理发",
+        "duration": 45,
+        "deadline": "2026-10-10T14:00+08:00"
+      },
+      {
+        "title": "整理收据",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-03-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。2026-10-09 21:00前要备份照片，预计1小时；周六14:00前要理发，预计45分钟；周五前要整理收据，时长还没有估计。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "备份照片",
+        "duration": 60,
+        "deadline": "2026-10-09T21:00+08:00"
+      },
+      {
+        "title": "理发",
+        "duration": 45,
+        "deadline": "2026-10-10T14:00+08:00"
+      },
+      {
+        "title": "整理收据",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-04-structured",
+    "style": "structured",
+    "text": "读两章书 | 一个半小时 | 周五18:00前\n练琴 | 30分钟 | 明天08:00前\n购买车票 | 15分钟 | 今天18:00前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "读两章书",
+        "duration": 90,
+        "deadline": "2026-10-09T18:00+08:00"
+      },
+      {
+        "title": "练琴",
+        "duration": 30,
+        "deadline": "2026-10-06T08:00+08:00"
+      },
+      {
+        "title": "购买车票",
+        "duration": 15,
+        "deadline": "2026-10-05T18:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-04-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。周五18:00前要读两章书，预计一个半小时；明天08:00前要练琴，预计30分钟；今天18:00前要购买车票，预计15分钟。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "读两章书",
+        "duration": 90,
+        "deadline": "2026-10-09T18:00+08:00"
+      },
+      {
+        "title": "练琴",
+        "duration": 30,
+        "deadline": "2026-10-06T08:00+08:00"
+      },
+      {
+        "title": "购买车票",
+        "duration": 15,
+        "deadline": "2026-10-05T18:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-05-structured",
+    "style": "structured",
+    "text": "做饭 | 60分钟 | 明天19:00前\n打印资料 | 20分钟 | 今天16:00前\n打包行李 | 45分钟 | 周日21:00前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "做饭",
+        "duration": 60,
+        "deadline": "2026-10-06T19:00+08:00"
+      },
+      {
+        "title": "打印资料",
+        "duration": 20,
+        "deadline": "2026-10-05T16:00+08:00"
+      },
+      {
+        "title": "打包行李",
+        "duration": 45,
+        "deadline": "2026-10-11T21:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-05-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。明天19:00前要做饭，预计60分钟；今天16:00前要打印资料，预计20分钟；周日21:00前要打包行李，预计45分钟。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "做饭",
+        "duration": 60,
+        "deadline": "2026-10-06T19:00+08:00"
+      },
+      {
+        "title": "打印资料",
+        "duration": 20,
+        "deadline": "2026-10-05T16:00+08:00"
+      },
+      {
+        "title": "打包行李",
+        "duration": 45,
+        "deadline": "2026-10-11T21:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-06-structured",
+    "style": "structured",
+    "text": "看论文 | 1.5h | 周三14:00前\n交作业 | 30分钟 | 周四09:00前\n做预算 | 60分钟 | 周日18:00前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "看论文",
+        "duration": 90,
+        "deadline": "2026-10-07T14:00+08:00"
+      },
+      {
+        "title": "交作业",
+        "duration": 30,
+        "deadline": "2026-10-08T09:00+08:00"
+      },
+      {
+        "title": "做预算",
+        "duration": 60,
+        "deadline": "2026-10-11T18:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-06-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。周三14:00前要看论文，预计1.5h；周四09:00前要交作业，预计30分钟；周日18:00前要做预算，预计60分钟。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "看论文",
+        "duration": 90,
+        "deadline": "2026-10-07T14:00+08:00"
+      },
+      {
+        "title": "交作业",
+        "duration": 30,
+        "deadline": "2026-10-08T09:00+08:00"
+      },
+      {
+        "title": "做预算",
+        "duration": 60,
+        "deadline": "2026-10-11T18:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-07-structured",
+    "style": "structured",
+    "text": "学编程 | 120分钟 | 明天下午3点30分前\n练口语 | 半小时 | 周三晚上8点前\n给植物浇水 | 时长待估计 | 期限未定",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "学编程",
+        "duration": 120,
+        "deadline": "2026-10-06T15:30+08:00"
+      },
+      {
+        "title": "练口语",
+        "duration": 30,
+        "deadline": "2026-10-07T20:00+08:00"
+      },
+      {
+        "title": "给植物浇水",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-07-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。明天下午3点30分前要学编程，预计120分钟；周三晚上8点前要练口语，预计半小时；还要给植物浇水，时长还没有估计。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "学编程",
+        "duration": 120,
+        "deadline": "2026-10-06T15:30+08:00"
+      },
+      {
+        "title": "练口语",
+        "duration": 30,
+        "deadline": "2026-10-07T20:00+08:00"
+      },
+      {
+        "title": "给植物浇水",
+        "duration": null,
+        "deadline": null
+      }
+    ]
+  },
+  {
+    "id": "capture-08-structured",
+    "style": "structured",
+    "text": "修改作品集 | 90分钟 | 周三18:00前\n发送求职信 | 15分钟 | 周四17:00前\n查路线 | 20分钟 | 周五09:00前",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "修改作品集",
+        "duration": 90,
+        "deadline": "2026-10-07T18:00+08:00"
+      },
+      {
+        "title": "发送求职信",
+        "duration": 15,
+        "deadline": "2026-10-08T17:00+08:00"
+      },
+      {
+        "title": "查路线",
+        "duration": 20,
+        "deadline": "2026-10-09T09:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "capture-08-prose",
+    "style": "prose",
+    "text": "这周要处理几件事。周三18:00前要修改作品集，预计90分钟；周四17:00前要发送求职信，预计15分钟；周五09:00前要查路线，预计20分钟。",
+    "anchor": "2026-10-05T09:00",
+    "timezone": "Asia/Shanghai",
+    "gold": [
+      {
+        "title": "修改作品集",
+        "duration": 90,
+        "deadline": "2026-10-07T18:00+08:00"
+      },
+      {
+        "title": "发送求职信",
+        "duration": 15,
+        "deadline": "2026-10-08T17:00+08:00"
+      },
+      {
+        "title": "查路线",
+        "duration": 20,
+        "deadline": "2026-10-09T09:00+08:00"
+      }
+    ]
+  }
+]

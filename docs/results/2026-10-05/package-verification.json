@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-05T02:25:02.965168+00:00",
+  "source_sha256": "24e867930127515be267c2585d8289f895f1392ccb3a96695d7b3d8633b6a7c8",
+  "python": "3.12.12",
+  "system": "Darwin",
+  "machine": "arm64",
+  "wheel_install_outside_checkout": true,
+  "installed_runtime_and_ui_files_match_release_source": true,
+  "matched_package_files": 19,
+  "wheel_metadata_uses_current_public_repository": true,
+  "cli_sorting_counterexample": {
+    "state": "scheduled",
+    "optimal": true,
+    "independent_checker_errors": 0,
+    "exported_task_events": 2
+  },
+  "source_first_start": {
+    "isolated_environment_created": true,
+    "dependencies_installed_from_pypi": true,
+    "http_interface_served": true,
+    "mode": "launch.py --no-browser",
+    "launcher_bytes_identical_to_release": true,
+    "note": "First-start behavior tested from the source archive. Final repository URLs were updated afterward; the final wheel and every runtime/UI file were independently reinstalled and checked."
+  }
+}

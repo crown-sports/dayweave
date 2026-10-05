@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>DayWeave · 把这一周安排得过来</title>
+    <link rel="stylesheet" href="/assets/workbench.css" />
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="DayWeave 首页"
+        ><span class="brand-symbol">w</span
+        ><span>DayWeave<small>日程织</small></span></a
+      >
+      <nav aria-label="项目操作">
+        <span class="local-tag"
+          ><span class="online-dot"></span> 保存在这台设备</span
+        ><button id="backup" class="quiet">保存项目</button
+        ><button id="restore" class="quiet">打开项目</button
+        ><button id="export" class="outline" disabled>导出到日历 ↗</button>
+      </nav>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">MAKE ROOM FOR WHAT MATTERS</p>
+          <h1>让这周，真的安排得过来。</h1>
+          <p class="subtitle">
+            告诉我你要做什么、什么时候有空。忙不过来，也会说清楚。
+          </p>
+        </div>
+        <div class="intro-actions">
+          <label for="example">先体验一下</label
+          ><select id="example">
+            <option value="balanced">求职、学习和日常</option>
+            <option value="sorting">简单排序排不了的一天</option>
+            <option value="overload">事情比时间多的上午</option></select
+          ><button id="load-example" class="quiet">载入示例</button>
+          <button id="new-project" class="outline">新建自己的计划</button>
+        </div>
+      </section>
+      <div class="workspace">
+        <aside class="input-panel">
+          <div class="panel-heading">
+            <h2>你的事情</h2>
+            <span id="task-count" class="count">0</span>
+          </div>
+          <div class="capture-actions">
+            <button id="paste" class="outline">＋ 粘贴一段事项</button
+            ><button id="add-task" class="quiet">手动添加</button>
+          </div>
+          <p class="hint" id="example-notice">
+            当前为示例；新建计划后可安排自己的事情。
+          </p>
+          <div id="tasks" class="task-list" aria-live="polite"></div>
+          <details class="settings">
+            <summary>可以安排的时间 <span>按实际情况填写</span></summary>
+            <div class="settings-body">
+              <div class="form-row">
+                <label
+                  >开始日期<input id="week-start" type="date" required /></label
+                ><label
+                  >时区<input id="timezone" value="Asia/Shanghai"
+                /></label>
+              </div>
+              <div id="available-list"></div>
+              <button id="add-window" class="small quiet">
+                ＋ 添加空闲时段
+              </button>
+            </div>
+          </details>
+          <details class="settings">
+            <summary>
+              已经约好的安排 <span id="appointment-count">0 件</span>
+            </summary>
+            <div class="settings-body">
+              <div id="appointments"></div>
+              <div class="form-row">
+                <button id="add-event" class="small quiet">＋ 添加安排</button
+                ><button id="import-calendar" class="small quiet">
+                  导入 .ics 日历
+                </button>
+              </div>
+            </div>
+          </details>
+          <div class="plan-controls">
+            <button id="solve" class="primary">安排这一周 ↗</button
+            ><button id="undo" class="quiet" disabled>撤销改动</button>
+            <p class="hint">时长由你估计；只有你明确允许，才会拆开做或推迟。</p>
+          </div>
+        </aside>
+        <section class="plan-panel">
+          <div class="plan-heading">
+            <div>
+              <p class="eyebrow">YOUR WEEK, WITH ROOM TO BREATHE</p>
+              <h2 id="week-label">本周的可执行日程</h2>
+            </div>
+            <div class="plan-tools">
+              <button id="interrupt" class="outline" disabled>
+                模拟插入新安排</button
+              ><span id="plan-status" class="status neutral">等待安排</span>
+            </div>
+          </div>
+          <div id="notice" class="notice" role="status">
+            <span>◌</span>
+            <p>输入事项和空闲时段，然后点击“安排这一周”。</p>
+          </div>
+          <section id="conflict" class="conflict-box" hidden></section>
+          <div class="metrics">
+            <div>
+              <span>安排的事情</span><strong id="metric-tasks">—</strong
+              ><small id="metric-tasks-note">全部时间约束都会检查</small>
+            </div>
+            <div>
+              <span>需要投入</span><strong id="metric-time">—</strong
+              ><small>以你填写的时长计算</small>
+            </div>
+            <div>
+              <span>原计划改动</span><strong id="metric-change">—</strong
+              ><small id="metric-change-note">插入新事情时尽量少改</small>
+            </div>
+          </div>
+          <div class="calendar-wrap">
+            <div id="calendar" class="calendar" aria-label="每周日程"></div>
+          </div>
+          <div class="legend">
+            <span><i class="task-dot"></i>待办事项</span
+            ><span><i class="event-dot"></i>已约安排</span
+            ><span><i class="moved-dot"></i>这次调整</span
+            ><span class="legend-right">点击日程块查看时间与来源</span>
+          </div>
+          <details id="explanation" class="explanation">
+            <summary>为什么这样安排？</summary>
+            <div id="explanation-body"></div>
+          </details>
+          <div id="postponed" class="postponed" hidden></div>
+        </section>
+      </div>
+      <footer>
+        <span>无需账户。项目留在浏览器中，日历文件由你导入或导出。</span
+        ><span
+          >DayWeave 0.1 ·
+          <a
+            href="https://github.com/crown-sports/dayweave"
+            target="_blank"
+            rel="noreferrer"
+            >使用方法与算法</a
+          ></span
+        >
+      </footer>
+    </main>
+    <dialog id="capture-dialog">
+      <form id="capture-form">
+        <div class="dialog-title">
+          <h2>把事情先放下来。</h2>
+          <button
+            type="button"
+            id="close-capture"
+            class="icon"
+            aria-label="关闭事项输入"
+          >
+            ×
+          </button>
+        </div>
+        <p>一行一件事。识别后先确认时长和期限，再加入计划。</p>
+        <label for="note">你的事项</label
+        ><textarea
+          id="note"
+          rows="7"
+          placeholder="准备面试 | 90分钟 | 周三18:00前&#10;读完一章书 | 半小时&#10;买菜"
+        ></textarea>
+        <p id="capture-provider" class="hint">
+          离线逐行识别。没有写的时间会留给你确认。
+        </p>
+        <button id="capture-submit" class="primary" type="submit">
+          整理成待确认事项
+        </button>
+      </form>
+      <div id="drafts"></div>
+      <button id="accept-drafts" class="primary" hidden>确认并加入事项</button>
+    </dialog>
+    <dialog id="slot-dialog">
+      <div class="dialog-title">
+        <h2 id="slot-title">日程详情</h2>
+        <button id="close-slot" class="icon" aria-label="关闭日程详情">
+          ×
+        </button>
+      </div>
+      <div id="slot-content"></div>
+    </dialog>
+    <input id="calendar-file" type="file" accept=".ics,text/calendar" hidden />
+    <input
+      id="project-file"
+      type="file"
+      accept=".json,application/json"
+      hidden
+    />
+  </body>
+</html>

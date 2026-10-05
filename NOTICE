@@ -1,0 +1,11 @@
+DayWeave is an independently implemented MIT-licensed application.
+
+It uses OR-Tools (Apache-2.0), FastAPI (MIT), Uvicorn (BSD-3-Clause),
+icalendar (BSD-2-Clause), and recurring-ical-events (LGPL-3.0-or-later)
+as separately installed, unmodified Python dependencies. Their licenses
+remain applicable to those dependencies. No dependency source is vendored.
+
+Optional model capture uses separately obtained Qwen weights (Apache-2.0)
+through Transformers (Apache-2.0) and PyTorch (BSD-3-Clause).
+No model weights, private agent code, private source data, or server
+credentials are included in the repository or release packages.

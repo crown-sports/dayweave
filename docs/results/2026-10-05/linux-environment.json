@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-05T02:11:04.069233+00:00",
+  "system": "Linux",
+  "machine": "x86_64",
+  "cpu": "INTEL(R) XEON(R) GOLD 6530",
+  "logical_cpus": 128,
+  "ram_kib": 259278548,
+  "python": "3.12.14",
+  "versions": {
+    "dayweave": "0.1.0",
+    "ortools": "9.15.6755",
+    "numpy": "2.5.3",
+    "icalendar": "7.3.0",
+    "recurring-ical-events": "3.8.2",
+    "torch": "2.8.0",
+    "transformers": "4.57.6"
+  },
+  "model_device": {
+    "name": "NVIDIA GeForce RTX 5090",
+    "total_mib": 32607,
+    "driver": "580.95.05",
+    "used_mib_during_model_service": 8389,
+    "selected_gpus": 1,
+    "torch_cuda": "12.8"
+  },
+  "timing_scope": "Algorithm wall time excluding environment installation, service startup, browser rendering and network transfer."
+}
