@@ -18,13 +18,19 @@ export function renderTasks(project, mutate) {
     done.addEventListener("change", () =>
       mutate(() => {
         task.done = done.checked;
+        if (done.checked && task.duration) task.completed_minutes = task.duration;
+        else if (task.completed_minutes === task.duration) task.completed_minutes = 0;
+        task.locked = [];
+        project.previous = (project.previous || []).filter((slot) => slot.task !== task.id);
       }),
     );
     const info = element("div", "task-info");
     info.append(element("div", "task-name", task.title));
     const sub = element("div", "task-sub");
     sub.append(
-      element("span", "", task.duration ? `${task.duration} 分钟` : "时长待填"),
+      element("span", "", task.duration
+        ? `剩余 ${task.duration - (task.completed_minutes || 0)} / 共 ${task.duration} 分钟`
+        : "时长待填"),
     );
     if (task.deadline)
       sub.append(
@@ -95,7 +101,11 @@ export function renderTasks(project, mutate) {
         task.duration,
         (value) =>
           mutate(() => {
-            task.duration = Number(value);
+            const duration = Number(value);
+            if (!Number.isInteger(duration) || duration < 1 || duration > 1440 ||
+                duration < (task.completed_minutes || 0)) return;
+            task.duration = duration;
+            task.done = (task.completed_minutes || 0) === duration;
             task.locked = [];
             if (task.chunk > task.duration) task.chunk = task.duration;
           }),
@@ -121,6 +131,22 @@ export function renderTasks(project, mutate) {
       priorityLabel.append(priority);
       row.append(duration, priorityLabel);
       detail.append(row);
+      const completed = inputField(
+        "已完成工时（分钟，累计）", "number", task.completed_minutes || 0,
+        (value) => mutate(() => {
+          const minutes = Number(value);
+          if (!Number.isInteger(minutes) || minutes < 0 || minutes > task.duration) return;
+          task.completed_minutes = minutes;
+          task.done = minutes === task.duration;
+          task.locked = [];
+          project.previous = (project.previous || []).filter((slot) => slot.task !== task.id);
+        }),
+      );
+      completed.querySelector("input").min = "0";
+      completed.querySelector("input").max = String(task.duration || 0);
+      completed.querySelector("input").disabled = !task.duration;
+      detail.append(completed, element("p", "hint",
+        "只重排剩余工时；修改进度会解除该事项的固定时段。时间流逝不会自动计为完成。"));
       detail.append(
         inputField(
           "最早开始（可留空）",

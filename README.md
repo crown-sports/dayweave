@@ -52,6 +52,24 @@ The current browser UI is Chinese; JSON/CLI contracts and technical docs are in
 English. Dates and durations in pasted text support the formats in
 [the usage guide](docs/usage.md).
 
+## Record partial progress and replan only what remains
+
+Open a task's **调整详情** and set **已完成工时（分钟，累计）**. A 90-minute
+task with 30 minutes completed now schedules 60 minutes; the original estimate
+and cumulative progress stay in your project backup. Updating progress clears
+that task's old fixed slots, then **安排这一周** finds time for the remaining
+work. Fully completed prerequisites no longer block dependent tasks. No elapsed
+calendar time is automatically counted as completed work.
+
+JSON/CLI clients can set `"completed_minutes": 30` alongside `"duration": 90`.
+Completed minutes must be an integer from zero through the total estimate. Any
+explicit locked starts must match the remaining segment count. The independent
+schedule checker and `.ics` export validate only the outstanding work.
+
+```sh
+dayweave plan examples/partial-progress.json --output remaining.json --calendar remaining.ics
+```
+
 ## What the algorithm does
 
 This is an independently implemented application built on the established

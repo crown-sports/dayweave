@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import math
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import UTC, datetime, timedelta
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -202,10 +202,13 @@ class PlanningInput:
         if not isinstance(raw_previous, list) or len(raw_previous) > 300:
             raise InputError("At most 300 previous task segments are supported")
         tasks = []
+        progress: dict[str, int] = {}
         for raw in raw_tasks:
             if not isinstance(raw, dict):
                 raise InputError("A task must be an object")
             duration = integer(raw.get("duration"), "Task duration", 1, 1440)
+            completed = integer(raw.get("completed_minutes", 0), "Completed minutes", 0, duration)
+            remaining = duration - completed
             chunk = integer(raw.get("chunk", duration), "Segment duration", 1, duration)
             if math.ceil(duration / chunk) > 12:
                 raise InputError("A task may have at most twelve segments")
@@ -219,8 +222,9 @@ class PlanningInput:
             after, locked = raw.get("after", []), raw.get("locked", [])
             if not isinstance(after, list) or len(after) > 20 or not isinstance(locked, list):
                 raise InputError("Dependencies and locked starts must be bounded lists")
-            if locked and (not required or len(locked) != math.ceil(duration / chunk)):
+            if locked and (not required or not remaining or len(locked) != math.ceil(remaining / chunk)):
                 raise InputError("A locked task must be required and pin every segment")
+            progress[identifier(raw.get("id"))] = completed
             tasks.append(
                 Task(
                     identifier(raw.get("id")),
@@ -280,6 +284,30 @@ class PlanningInput:
             if not -28 * 1440 <= start <= 56 * 1440:
                 raise InputError("Previous start is too far from this horizon")
             previous.append(PriorSlot(task_id, part, start, integer(raw.get("duration"), "Previous duration", 1, 1440)))
+        completed_ids = {task.id for task in tasks if progress[task.id] == task.duration}
+        tasks = [
+            replace(
+                task,
+                duration=task.duration - progress[task.id],
+                chunk=min(task.chunk, task.duration - progress[task.id]),
+                after=tuple(parent for parent in task.after if parent not in completed_ids),
+            )
+            for task in tasks
+            if task.id not in completed_ids
+        ]
+        # Progress may change segment shapes. Preserve valid remaining plans, but do not
+        # optimize against obsolete segments or completed work as if it still existed.
+        parts = {task.id: task.parts for task in tasks}
+        stale = set(completed_ids)
+        for task_id, minutes in progress.items():
+            if not minutes or task_id not in parts:
+                continue
+            old = sorted((slot for slot in previous if slot.task == task_id), key=lambda slot: slot.part)
+            if [slot.part for slot in old] != list(range(len(parts[task_id]))) or tuple(
+                slot.duration for slot in old
+            ) != parts[task_id]:
+                stale.add(task_id)
+        previous = [slot for slot in previous if slot.task not in stale]
         return cls(
             zone,
             origin,
