@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dayweave"
-version = "0.2.0"
+version = "0.2.1"
 readme = "README.md"
 authors = [{name = "Chris Chen"}]
 description = "A personal planner that fits real constraints, explains overload, and replans with less disruption"
