@@ -1,5 +1,7 @@
 # DayWeave · 日程织
 
+当前版本 **0.2.0（预发布）**，通过 [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0) 提供 wheel、源码归档和 `SHA256SUMS`；不依赖 PyPI 发布。安装说明固定到此版本。
+
 **把待办和已有日历，排成真的放得下的日程；排不下会解释，临时有事会尽量少改。**
 
 [English](README.md) · [算法说明](docs/algorithms.md) · [完整实测与原始记录](docs/results.md)
@@ -34,7 +36,7 @@ DayWeave 面向个人求职、学习和日常安排。你填写事情、预计�
 ## 别人如何使用
 
 先从 [python.org](https://www.python.org/downloads/) 安装 **Python 3.12**。
-在 GitHub 点击 **Code → Download ZIP**，解压后：
+在 [v0.2.0 GitHub 预发布页](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0)下载 **Source code (zip)**，解压后：
 
 - Windows：双击 `Start-DayWeave.cmd`。
 - macOS：双击 `Start-DayWeave.command`。

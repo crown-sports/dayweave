@@ -1,5 +1,7 @@
 # DayWeave
 
+Version **0.2.0 (prerelease)** is distributed through [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0) as a wheel, source archive, and `SHA256SUMS`. Installation below pins this version; no PyPI release is required.
+
 **A personal planner that fits your actual calendar, explains overload, and changes fewer plans when life interrupts.**
 
 [中文使用说明](README.zh-CN.md) · [Algorithms](docs/algorithms.md) · [Measured results](docs/results.md)
@@ -19,7 +21,7 @@ You review any proposed postponement before using it.
 ## Use it
 
 Install Python 3.12 from [python.org](https://www.python.org/downloads/), then
-download and unzip this repository from **Code → Download ZIP** on GitHub.
+download and unzip **Source code (zip)** from the [v0.2.0 GitHub prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0).
 
 - **Windows:** double-click `Start-DayWeave.cmd`.
 - **macOS:** double-click `Start-DayWeave.command`.
