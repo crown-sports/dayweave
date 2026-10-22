@@ -1,6 +1,6 @@
 # DayWeave
 
-Version **0.2.0 (prerelease)** is distributed through [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0) as a wheel, source archive, and `SHA256SUMS`. Installation below pins this version; no PyPI release is required.
+Version **0.2.1 (prerelease)** is distributed through [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1) as a wheel, source archive, and `SHA256SUMS`. Installation below pins this version; no PyPI release is required.
 
 **A personal planner that fits your actual calendar, explains overload, and changes fewer plans when life interrupts.**
 
@@ -18,10 +18,17 @@ You review any proposed postponement before using it.
 
 ![Actual browser result: an inserted appointment moves one task](docs/assets/workbench.jpg)
 
+Use it for personal study, job hunting or weekly errands when several deadlines
+compete for the same free hours. If you only need to remember a few tasks, a
+to-do list may be enough. If you need team assignments, reminders or automatic
+calendar synchronization, those are outside this prerelease. The useful output
+here is a timetable you can inspect and export, or a specific conflict that
+helps you decide what to change. [Evidence behind the implementation](docs/product.md).
+
 ## Use it
 
 Install Python 3.12 from [python.org](https://www.python.org/downloads/), then
-download and unzip **Source code (zip)** from the [v0.2.0 GitHub prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0).
+download and unzip **Source code (zip)** from the [v0.2.1 GitHub prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1).
 
 - **Windows:** double-click `Start-DayWeave.cmd`.
 - **macOS:** double-click `Start-DayWeave.command`.
@@ -32,19 +39,28 @@ needs internet. Later launches use that environment. A browser opens at
 `http://127.0.0.1:8787`; keep the terminal window open while using the planner.
 The core planner needs no account, API key, language model, or GPU.
 
-In the browser:
+**Try before entering your own tasks:** choose **简单排序排不了的一天** under
+**先体验一下**, click **载入示例**, then **安排这一周**. Success means both
+tasks fit: three hours of study at 09:00–12:00 and a one-hour phone task at
+12:00–13:00. The phone task may start only after 11:00; placing it first at
+11:00 would break up the continuous study time. This is a computed example,
+not your real calendar. The **事情比时间多的上午** example instead shows
+240 minutes of work competing for 180 minutes and asks you to choose a change.
+
+For your own plan:
 
 1. Click **新建自己的计划** to start your own plan. Editable examples are explicitly
    separate and use their example time rather than the real clock.
 2. Paste one task per line or use the manual editor. For example:
 
    ```text
-   Prepare interview | 90 minutes | 2026-10-09 18:00
-   Read a chapter | 30 minutes | 2026-10-10 18:00
+   Prepare interview | 90 minutes
+   Read a chapter | 30 minutes
    ```
 
-3. Review durations and deadlines, then edit your available hours and import an
-   `.ics` calendar if you have one.
+3. Set actual deadlines in the review form, or explicitly choose the end of the
+   selected week. Then edit your available hours and import an `.ics` calendar
+   if you have one. Do not leave example availability in place for a personal plan.
 4. Click **安排这一周**. Inspect the timetable, or review the conflict and choose
    what to change. Pin an arrangement when its time must remain fixed.
 5. Add an appointment and replan. Export a checked timetable as `.ics` and import
@@ -71,6 +87,12 @@ schedule checker and `.ics` export validate only the outstanding work.
 ```sh
 dayweave plan examples/partial-progress.json --output remaining.json --calendar remaining.ics
 ```
+
+After the developer installation below, this fixed-date example should produce
+`state: scheduled` and `validated: true`, with a 60-minute draft followed by a
+30-minute review. The `.ics` contains those two remaining blocks. For your own
+project, record actual progress yourself and review remaining effort before
+replanning; passing time is not proof that work was completed.
 
 ## What the algorithm does
 
@@ -116,10 +138,12 @@ results, actual RTX 5090 capture outputs, source hashes, and failures are in
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install '.[dev]'
-.venv/bin/dayweave serve
+source .venv/bin/activate
+dayweave serve
 ```
 
-On Windows use `.venv\Scripts\python.exe` and `.venv\Scripts\dayweave.exe`.
+On Windows use `.venv\Scripts\python.exe` and `.venv\Scripts\dayweave.exe`,
+or activate with `.venv\Scripts\Activate.ps1` in PowerShell before the commands below.
 
 ```sh
 dayweave example sorting --output input.json
