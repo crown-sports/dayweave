@@ -34,6 +34,7 @@ export function buildPlanInput(project) {
         id: task.id,
         title: task.title,
         duration: task.duration,
+        completed_minutes: task.completed_minutes || 0,
         priority: task.priority || 3,
         required: task.required !== false,
         after: (task.after || []).filter((key) => !done.has(key)),
@@ -124,6 +125,11 @@ export function restoreProject(value) {
       (task.release && !date(task.release))
     )
       fail();
+    if (
+      task.completed_minutes != null &&
+      (!Number.isInteger(task.completed_minutes) || task.completed_minutes < 0 ||
+        (task.duration == null ? task.completed_minutes !== 0 : task.completed_minutes > task.duration))
+    ) fail();
     if (task.after && (!Array.isArray(task.after) || !task.after.every(id)))
       fail();
     if (
@@ -149,6 +155,7 @@ export function restoreProject(value) {
       id: task.id,
       title: task.title,
       duration: task.duration ?? null,
+      completed_minutes: task.completed_minutes || 0,
       priority: task.priority || 3,
       required: task.required !== false,
       after: task.after || [],
@@ -156,7 +163,7 @@ export function restoreProject(value) {
       release: task.release || null,
       deadline: task.deadline || null,
       chunk: task.chunk || null,
-      done: task.done === true,
+      done: task.done === true || (task.duration != null && task.completed_minutes === task.duration),
       source:
         typeof task.source === "string" ? task.source.slice(0, 500) : null,
     };

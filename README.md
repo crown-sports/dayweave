@@ -1,5 +1,7 @@
 # DayWeave
 
+Version **0.2.0 (prerelease)** is distributed through [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0) as a wheel, source archive, and `SHA256SUMS`. Installation below pins this version; no PyPI release is required.
+
 **A personal planner that fits your actual calendar, explains overload, and changes fewer plans when life interrupts.**
 
 [中文使用说明](README.zh-CN.md) · [Algorithms](docs/algorithms.md) · [Measured results](docs/results.md)
@@ -19,7 +21,7 @@ You review any proposed postponement before using it.
 ## Use it
 
 Install Python 3.12 from [python.org](https://www.python.org/downloads/), then
-download and unzip this repository from **Code → Download ZIP** on GitHub.
+download and unzip **Source code (zip)** from the [v0.2.0 GitHub prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.0).
 
 - **Windows:** double-click `Start-DayWeave.cmd`.
 - **macOS:** double-click `Start-DayWeave.command`.
@@ -51,6 +53,24 @@ In the browser:
 The current browser UI is Chinese; JSON/CLI contracts and technical docs are in
 English. Dates and durations in pasted text support the formats in
 [the usage guide](docs/usage.md).
+
+## Record partial progress and replan only what remains
+
+Open a task's **调整详情** and set **已完成工时（分钟，累计）**. A 90-minute
+task with 30 minutes completed now schedules 60 minutes; the original estimate
+and cumulative progress stay in your project backup. Updating progress clears
+that task's old fixed slots, then **安排这一周** finds time for the remaining
+work. Fully completed prerequisites no longer block dependent tasks. No elapsed
+calendar time is automatically counted as completed work.
+
+JSON/CLI clients can set `"completed_minutes": 30` alongside `"duration": 90`.
+Completed minutes must be an integer from zero through the total estimate. Any
+explicit locked starts must match the remaining segment count. The independent
+schedule checker and `.ics` export validate only the outstanding work.
+
+```sh
+dayweave plan examples/partial-progress.json --output remaining.json --calendar remaining.ics
+```
 
 ## What the algorithm does
 

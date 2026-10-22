@@ -14,6 +14,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, Response
 from starlette.concurrency import run_in_threadpool
 
+from . import __version__
 from .calendar_io import export_calendar, import_calendar
 from .capture import capture_note
 from .contracts import InputError, PlanningInput, strict_json
@@ -99,7 +100,7 @@ def create_app(model_endpoint: str | None = None, model: str = "qwen3:4b") -> Fa
 
     @app.get("/api/session")
     async def session() -> JSONResponse:
-        response = JSONResponse({"token": token, "model_enabled": bool(model_endpoint), "version": "0.1.0"})
+        response = JSONResponse({"token": token, "model_enabled": bool(model_endpoint), "version": __version__})
         response.set_cookie("dayweave_session", token, httponly=True, samesite="strict")
         return response
 
