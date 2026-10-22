@@ -128,7 +128,7 @@ export function restoreProject(value) {
     if (
       task.completed_minutes != null &&
       (!Number.isInteger(task.completed_minutes) || task.completed_minutes < 0 ||
-        task.duration == null || task.completed_minutes > task.duration)
+        (task.duration == null ? task.completed_minutes !== 0 : task.completed_minutes > task.duration))
     ) fail();
     if (task.after && (!Array.isArray(task.after) || !task.after.every(id)))
       fail();

@@ -118,6 +118,11 @@ raw.tasks[0].completed_minutes = 90;
 const done = restoreProject(raw);
 assert.equal(done.tasks[0].done, true);
 assert.deepEqual(buildPlanInput(done).tasks[0].after, []);
+const draft = {{...raw, tasks:[{{id:"draft",title:"Unestimated",duration:null}}]}};
+const restoredDraft = restoreProject(restoreProject(draft));
+assert.equal(restoredDraft.tasks[0].duration, null);
+assert.equal(restoredDraft.tasks[0].completed_minutes, 0);
+assert.throws(() => restoreProject({{...draft, tasks:[{{...draft.tasks[0], completed_minutes:1}}]}}));
 """
     subprocess.run(
         ["node", "--input-type=module", "-e", script],
