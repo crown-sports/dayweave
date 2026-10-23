@@ -40,7 +40,17 @@ jobs:
         shell: bash
         run: |
           npm install --prefix "$RUNNER_TEMP/dayweave-browser" --no-package-lock playwright@1.62.1
-          "$RUNNER_TEMP/dayweave-browser/node_modules/.bin/playwright" install --with-deps chromium
+          dayweave_browser="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          if [ -n "$dayweave_browser" ]; then
+            echo "Using preinstalled Chrome: $dayweave_browser"
+          else
+            echo "Preinstalled Chrome not found; installing Playwright Chromium."
+            "$RUNNER_TEMP/dayweave-browser/node_modules/.bin/playwright" install --with-deps chromium
+            dayweave_browser="$(NODE_PATH="$RUNNER_TEMP/dayweave-browser/node_modules" node -p "require('playwright').chromium.executablePath()")"
+            echo "Using Playwright Chromium: $dayweave_browser"
+          fi
+          export BROWSER_PATH="$dayweave_browser"
+          "$BROWSER_PATH" --version
           dayweave serve --port 8787 > "$RUNNER_TEMP/dayweave-browser/server.log" 2>&1 &
           dayweave_server_pid=$!
           trap 'kill "$dayweave_server_pid" 2>/dev/null || true' EXIT
