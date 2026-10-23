@@ -7,9 +7,10 @@ export function inputField(label, type, value, onChange) {
   const input = document.createElement("input");
   input.id = `field-${++labelCounter}`;
   input.type = type;
+  input.dataset.editorKey = label;
   input.value = value ?? "";
   input.setAttribute("aria-label", label);
-  input.addEventListener("change", () => onChange(input.value, input));
+  input.onchange = (event) => onChange(event.currentTarget.value, event.currentTarget);
   wrapper.append(input);
   return wrapper;
 }
@@ -17,6 +18,6 @@ export function inputField(label, type, value, onChange) {
 export function action(label, callback, className = "quiet small") {
   const button = element("button", className, label);
   button.type = "button";
-  button.addEventListener("click", callback);
+  button.onclick = callback;
   return button;
 }

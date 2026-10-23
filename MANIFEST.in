@@ -8,3 +8,4 @@ recursive-include docs *.md *.json *.jsonl *.txt *.jpg
 global-exclude __pycache__ *.pyc .DS_Store
 recursive-include examples *.json *.md
 include docs/assets/remaining-work.png
+include tests/browser_editing.cjs

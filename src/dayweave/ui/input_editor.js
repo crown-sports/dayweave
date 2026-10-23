@@ -1,29 +1,31 @@
 import { element, clock } from "./calendar.js";
 import { inputField, action } from "./controls.js";
+import { updateEditor } from "./editor_dom.js";
 
 const $ = (id) => document.getElementById(id);
 
 export function renderTasks(project, mutate) {
-  $("tasks").replaceChildren();
+  const taskList = document.createDocumentFragment();
   $("task-count").textContent = project.tasks.filter(
     (task) => !task.done,
   ).length;
   for (const task of project.tasks) {
     const card = element("div", "task-card" + (task.done ? " done" : ""));
+    card.dataset.editorKey = task.id;
     const head = element("div", "task-summary");
     const done = document.createElement("input");
     done.type = "checkbox";
+    done.dataset.editorKey = "done";
     done.checked = !!task.done;
     done.setAttribute("aria-label", `标记“${task.title}”已完成`);
-    done.addEventListener("change", () =>
+    done.onchange = (event) =>
       mutate(() => {
-        task.done = done.checked;
-        if (done.checked && task.duration) task.completed_minutes = task.duration;
+        task.done = event.currentTarget.checked;
+        if (task.done && task.duration) task.completed_minutes = task.duration;
         else if (task.completed_minutes === task.duration) task.completed_minutes = 0;
         task.locked = [];
         project.previous = (project.previous || []).filter((slot) => slot.task !== task.id);
-      }),
-    );
+      });
     const info = element("div", "task-info");
     info.append(element("div", "task-name", task.title));
     const sub = element("div", "task-sub");
@@ -125,9 +127,9 @@ export function renderTasks(project, mutate) {
       }
       priority.value = task.priority || 3;
       priority.setAttribute("aria-label", "重要程度");
-      priority.addEventListener("change", () =>
-        mutate(() => (task.priority = Number(priority.value))),
-      );
+      priority.dataset.editorKey = "priority";
+      priority.onchange = (event) =>
+        mutate(() => (task.priority = Number(event.currentTarget.value)));
       priorityLabel.append(priority);
       row.append(duration, priorityLabel);
       detail.append(row);
@@ -174,35 +176,35 @@ export function renderTasks(project, mutate) {
         parents.append(option);
       }
       parents.value = task.after?.[0] || "";
-      parents.addEventListener("change", () =>
-        mutate(() => (task.after = parents.value ? [parents.value] : [])),
-      );
+      parents.dataset.editorKey = "after";
+      parents.onchange = (event) =>
+        mutate(() => (task.after = event.currentTarget.value ? [event.currentTarget.value] : []));
       parentLabel.append(parents);
       detail.append(parentLabel);
       const required = element("label", "form-row");
       const requiredBox = document.createElement("input");
       requiredBox.type = "checkbox";
       requiredBox.checked = task.required !== false;
-      requiredBox.addEventListener("change", () =>
+      requiredBox.dataset.editorKey = "required";
+      requiredBox.onchange = (event) =>
         mutate(() => {
-          task.required = requiredBox.checked;
+          task.required = event.currentTarget.checked;
           if (!task.required) task.locked = [];
-        }),
-      );
+        });
       required.append(requiredBox, element("span", "", "这件事必须安排进去"));
       detail.append(required);
       const split = element("label", "form-row");
       const splitBox = document.createElement("input");
       splitBox.type = "checkbox";
       splitBox.checked = !!task.chunk && task.chunk < task.duration;
-      splitBox.addEventListener("change", () =>
+      splitBox.dataset.editorKey = "split";
+      splitBox.onchange = (event) =>
         mutate(() => {
-          task.chunk = splitBox.checked
+          task.chunk = event.currentTarget.checked
             ? Math.min(60, task.duration)
             : task.duration;
           task.locked = [];
-        }),
-      );
+        });
       split.append(splitBox, element("span", "", "允许拆成较短的时段"));
       detail.append(split);
       if (splitBox.checked)
@@ -218,14 +220,15 @@ export function renderTasks(project, mutate) {
         detail.append(element("p", "hint", `来自事项输入：${task.source}`));
       card.append(detail);
     }
-    $("tasks").append(card);
+    taskList.append(card);
   }
+  updateEditor($("tasks"), taskList);
 }
 
 export function renderSettings(project, mutate) {
   $("week-start").value = project.start.slice(0, 10);
   $("timezone").value = project.timezone;
-  $("available-list").replaceChildren();
+  const availableList = document.createDocumentFragment();
   project.available.forEach((window, index) => {
     const row = element("div", "window-row");
     row.append(element("span", "", `空闲时段 ${index + 1}`));
@@ -250,10 +253,11 @@ export function renderSettings(project, mutate) {
       ),
     );
     row.append(fields);
-    $("available-list").append(row);
+    availableList.append(row);
   });
+  updateEditor($("available-list"), availableList);
   $("appointment-count").textContent = `${project.appointments.length} 件`;
-  $("appointments").replaceChildren();
+  const appointments = document.createDocumentFragment();
   project.appointments.forEach((event, index) => {
     const row = element("div", "appointment-row");
     row.append(
@@ -282,6 +286,7 @@ export function renderSettings(project, mutate) {
       ),
     );
     row.append(fields);
-    $("appointments").append(row);
+    appointments.append(row);
   });
+  updateEditor($("appointments"), appointments);
 }

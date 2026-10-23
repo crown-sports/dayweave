@@ -145,3 +145,16 @@ Model download/setup is optional and takes substantially more disk/memory than
 the CPU planner. The supplied evaluation uses synthetic public notes, not user
 calendar contents. See raw results rather than assuming all local models have
 the same extraction accuracy.
+
+## Browser editing regression check
+
+On main, input editors retain their controls across field changes. The browser
+check types with real keyboard events, tabs through fields, clicks directly from
+an edit into scheduling, and checks progress, dependency selection and undo.
+Its fixed Monday/Friday clocks also cover the default week for a new personal
+plan; importing an existing project preserves its dates.
+
+With Node.js and Playwright 1.62.1 installed, run `dayweave serve` in one terminal,
+then `node tests/browser_editing.cjs` in another. `DAYWEAVE_URL` selects another
+loopback port; `BROWSER_PATH` optionally selects an installed Chromium binary.
+The Linux/Python 3.12 CI job runs this check against the installed package.
