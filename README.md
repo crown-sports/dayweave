@@ -1,177 +1,77 @@
 # DayWeave
 
-Version **0.2.1 (prerelease)** is distributed through [GitHub Releases](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1) as a wheel, source archive, and `SHA256SUMS`. Installation below pins this version; no PyPI release is required.
+Put tasks into the hours you actually have. When they don't fit, see what needs to change.
 
-**A personal planner that fits your actual calendar, explains overload, and changes fewer plans when life interrupts.**
+[中文](README.zh-CN.md) · [Usage](docs/usage.md) · [v0.2.1 prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1)
 
-[中文使用说明](README.zh-CN.md) · [Algorithms](docs/algorithms.md) · [Measured results](docs/results.md)
+![DayWeave schedules only the remaining work after completed minutes are recorded](docs/assets/remaining-work.png)
 
-People have tasks, deadlines, appointments, and limited free hours. Sorting a
-to-do list does not establish whether the work fits. Rebuilding a week whenever
-one appointment changes can disrupt otherwise usable plans.
+*Actual local planner with editable demo tasks. Completed work is entered by the user.*
 
-DayWeave turns **tasks + estimated durations + deadlines + available hours +
-existing appointments** into a checked timetable. If commitments conflict, it
-shows the conflicting items and, when possible, a precise time shortfall. If a
-new appointment arrives, it searches for a plan that moves fewer existing tasks.
-You review any proposed postponement before using it.
+Add your tasks, estimated durations, deadlines and appointments. DayWeave makes
+a timetable, explains conflicts, and tries to keep existing arrangements when
+something changes. Export the result to your calendar as `.ics`.
 
-![Actual browser result: an inserted appointment moves one task](docs/assets/workbench.jpg)
+## Open it
 
-Use it for personal study, job hunting or weekly errands when several deadlines
-compete for the same free hours. If you only need to remember a few tasks, a
-to-do list may be enough. If you need team assignments, reminders or automatic
-calendar synchronization, those are outside this prerelease. The useful output
-here is a timetable you can inspect and export, or a specific conflict that
-helps you decide what to change. [Evidence behind the implementation](docs/product.md).
+Install **Python 3.12** from [python.org](https://www.python.org/downloads/), then
+download and unzip **Source code (zip)** from [v0.2.1](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1).
 
-## Use it
+- Windows: double-click `Start-DayWeave.cmd`.
+- macOS: double-click `Start-DayWeave.command`.
+- Linux or terminal: run `python3 launch.py`.
 
-Install Python 3.12 from [python.org](https://www.python.org/downloads/), then
-download and unzip **Source code (zip)** from the [v0.2.1 GitHub prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1).
+The first launch installs dependencies and needs internet. The planner opens at
+**http://127.0.0.1:8787**. Keep the terminal open while using it. No account or model is needed.
 
-- **Windows:** double-click `Start-DayWeave.cmd`.
-- **macOS:** double-click `Start-DayWeave.command`.
-- **Linux or terminal:** run `python3 launch.py`.
+## Try a day before entering your week
 
-The first launch installs dependencies in the project's `.venv` directory and
-needs internet. Later launches use that environment. A browser opens at
-`http://127.0.0.1:8787`; keep the terminal window open while using the planner.
-The core planner needs no account, API key, language model, or GPU.
+The browser UI is Chinese:
 
-**Try before entering your own tasks:** choose **简单排序排不了的一天** under
-**先体验一下**, click **载入示例**, then **安排这一周**. Success means both
-tasks fit: three hours of study at 09:00–12:00 and a one-hour phone task at
-12:00–13:00. The phone task may start only after 11:00; placing it first at
-11:00 would break up the continuous study time. This is a computed example,
-not your real calendar. The **事情比时间多的上午** example instead shows
-240 minutes of work competing for 180 minutes and asks you to choose a change.
+1. Choose **简单排序排不了的一天** under **先体验一下** and click **载入示例**.
+2. Click **安排这一周**. Both tasks fit: study **09:00–12:00**, phone call **12:00–13:00**.
+3. Try **事情比时间多的上午** to see what happens when 240 minutes of work have only 180 minutes available.
 
-For your own plan:
+![An overloaded morning: 240 minutes of tasks, 180 minutes available, and a proposed postponement](docs/assets/overload.jpg)
 
-1. Click **新建自己的计划** to start your own plan. Editable examples are explicitly
-   separate and use their example time rather than the real clock.
-2. Paste one task per line or use the manual editor. For example:
+*Built-in overload example. The proposed postponement takes effect only after you accept it.*
 
-   ```text
-   Prepare interview | 90 minutes
-   Read a chapter | 30 minutes
-   ```
+## Make your own plan
 
-3. Set actual deadlines in the review form, or explicitly choose the end of the
-   selected week. Then edit your available hours and import an `.ics` calendar
-   if you have one. Do not leave example availability in place for a personal plan.
-4. Click **安排这一周**. Inspect the timetable, or review the conflict and choose
-   what to change. Pin an arrangement when its time must remain fixed.
-5. Add an appointment and replan. Export a checked timetable as `.ics` and import
-   it into your calendar yourself. Save a JSON project backup to move devices.
+Click **新建自己的计划**, add tasks, and set realistic durations and deadlines.
+Edit your available hours and import an `.ics` file or enter appointments.
+Click **安排这一周**, then inspect the blocks or adjust a conflicting commitment.
 
-The current browser UI is Chinese; JSON/CLI contracts and technical docs are in
-English. Dates and durations in pasted text support the formats in
-[the usage guide](docs/usage.md).
+Partway through a task? Open **调整详情** and enter **已完成工时（分钟，累计）**.
+A 90-minute task with 30 minutes done needs 60 more minutes. Replan to schedule
+only that work. Pin a task when its time must stay fixed.
 
-## Record partial progress and replan only what remains
+**保存项目** downloads a JSON backup; **打开项目** restores it. **导出到日历**
+downloads an `.ics` file for you to import. Nothing is written to a connected calendar.
 
-Open a task's **调整详情** and set **已完成工时（分钟，累计）**. A 90-minute
-task with 30 minutes completed now schedules 60 minutes; the original estimate
-and cumulative progress stay in your project backup. Updating progress clears
-that task's old fixed slots, then **安排这一周** finds time for the remaining
-work. Fully completed prerequisites no longer block dependent tasks. No elapsed
-calendar time is automatically counted as completed work.
+## For CLI users
 
-JSON/CLI clients can set `"completed_minutes": 30` alongside `"duration": 90`.
-Completed minutes must be an integer from zero through the total estimate. Any
-explicit locked starts must match the remaining segment count. The independent
-schedule checker and `.ics` export validate only the outstanding work.
-
-```sh
-dayweave plan examples/partial-progress.json --output remaining.json --calendar remaining.ics
-```
-
-After the developer installation below, this fixed-date example should produce
-`state: scheduled` and `validated: true`, with a 60-minute draft followed by a
-30-minute review. The `.ics` contains those two remaining blocks. For your own
-project, record actual progress yourself and review remaining effort before
-replanning; passing time is not proof that work was completed.
-
-## What the algorithm does
-
-This is an independently implemented application built on the established
-[OR-Tools CP-SAT solver](https://developers.google.com/optimization/cp/cp_solver).
-It does not claim to invent CP-SAT or a new scheduling theory.
-
-- Encode available windows, integer-minute durations, deadlines, prerequisites,
-  appointments, explicit splitting, and pinned starts as actual constraints.
-- Optimize sequentially: retained priority sum, changed existing tasks, start
-  displacement, then earlier completion and smaller gaps between segments.
-- Explain solver-proven infeasibility with an assumption core and bounded
-  deletion checks. A subset-minimal core is distinct from a smallest-size core.
-- Validate returned schedules with a separate arithmetic checker before
-  accepting or exporting them. Report feasible solutions and timeouts honestly.
-- Parse explicit structured notes deterministically. Optional local-model
-  capture selects exact source substrings from prose; missing fields remain for
-  review and rejected output falls back visibly.
-
-The contribution is a usable local workflow that combines these techniques,
-with independent checks and reproducible evidence. See
-[the mathematical model and worked examples](docs/algorithms.md).
-
-## Evidence, not productivity promises
-
-Paired fixtures use identical inputs and include every failed case. In the
-48-case constructed-feasible suite, DayWeave produced **48 complete valid
-plans**, versus **34** for dependency-aware earliest-deadline insertion.
-In 32 constrained replanning fixtures, it moved **2 tasks per case**;
-preserve-first insertion with deadline-rebuild fallback moved **9.125 on
-average**, with both methods completing all 32 cases. On flexible replanning
-fixtures, the preservation baseline also achieves one moved task.
-
-An independent exhaustive oracle agrees on feasibility and the first three
-optimization objectives in **96/96 small cases**, including 17 independently
-checked conflict cores. These are published synthetic fixtures, not measured
-human productivity or comparisons against commercial planning apps. CPU
-results, actual RTX 5090 capture outputs, source hashes, and failures are in
-[the results report](docs/results.md).
-
-## Developer installation
+From the downloaded source directory:
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install '.[dev]'
 source .venv/bin/activate
-dayweave serve
+python -m pip install .
+dayweave plan examples/partial-progress.json --output remaining.json --calendar remaining.ics
 ```
 
-On Windows use `.venv\Scripts\python.exe` and `.venv\Scripts\dayweave.exe`,
-or activate with `.venv\Scripts\Activate.ps1` in PowerShell before the commands below.
+The sample produces a checked **60-minute draft + 30-minute review**. On Windows,
+activate `.venv\Scripts\Activate.ps1` and use `.venv\Scripts\python.exe`.
+[JSON format, calendar support and optional local models](docs/usage.md).
 
-```sh
-dayweave example sorting --output input.json
-dayweave plan input.json --output result.json --calendar plan.ics
-python benchmarks/evaluate.py --output benchmark-runs/scheduling --seconds 2
-pytest -q
-ruff check src tests benchmarks launch.py
-mypy src
-```
+## A few limits
 
-[JSON input/output and local-model setup](docs/usage.md) ·
-[Design and acceptance contract](docs/design.md)
+This is a local, single-person planner. Durations are your estimates; it does not
+track work automatically or send reminders. Browser data needs a saved backup
+before you clear it. Some plans can time out, and not every calendar recurrence
+is supported. [What to change when a plan doesn't fit](docs/product.md).
 
-## Limits and data
-
-This is a local, single-person prerelease. The browser stores the project in
-local storage; calculations run in the local process. Generated downloads are
-held in bounded memory for at most five minutes. Clear browser data only after
-saving a backup. Initial package installation needs network access; optional
-model weights are obtained separately. No connected calendar is written to.
-
-The UI plans one week; the API allows up to 28 days, 60 tasks, and 300 explicit
-segments. Time is minute-based. Overlapping busy appointments are conflicting
-commitments; transparent calendar events are ignored. Future planning excludes
-elapsed appointments, but unfinished tasks still need your review. A task's
-duration is your estimate; DayWeave does not infer actual completion or promise
-adherence. It does not implement reminders, shared calendars, habit tracking,
-travel-time estimation, or optimality beyond a bounded solve.
-
-MIT for DayWeave. Separately installed dependency licenses and optional model
-attributions are described in [NOTICE](NOTICE).
+The scheduler uses OR-Tools CP-SAT and checks results independently. In published
+synthetic tests it completed 48/48 feasible cases versus 34/48 for deadline-based
+insertion. These are scheduling fixtures, not measured productivity gains.
+[Algorithms and full results](docs/results.md) · [Design](docs/design.md) · [Licenses](NOTICE)

@@ -1,40 +1,38 @@
-# Product fit and evidence
+# When a plan does not fit
 
-The intended user is one person balancing study, job hunting or daily tasks
-against limited hours. The question is “what fits, and what must I change?”
-The output is a checked timetable or a conflict to resolve. This scenario is
-inferred from the product; no user study or measured productivity gain is claimed.
+## Check the inputs before changing priorities
 
-## What makes the workflow useful
+Start with the hours you can actually use. Then check each task's duration,
+deadline, prerequisites and whether it may be split. A three-hour task cannot
+use two separate ninety-minute gaps unless its split rule permits that.
+Appointments remove time from availability. [Input format and examples](usage.md).
 
-| Compared with manually sorting a to-do list | Inspectable evidence | Limit |
-| --- | --- | --- |
-| Fit complete effort around deadlines, prerequisites and appointments | [Scheduling tests](../tests/test_scheduling.py), [oracle and baseline results](results.md) | Uses estimated durations; bounded solve may return unknown |
-| Replan while accounting for movement of existing tasks | [Scheduling tests](../tests/test_scheduling.py), [replanning fixtures](results.md) | Synthetic cases are not a comparison with commercial planners |
-| Schedule remaining effort after explicit progress updates | [Progress tests](../tests/test_progress.py), [90-minute example](../examples/partial-progress.json) | No automatic time tracking or inference of completion |
-| Independently check schedules before export | [Checker and solver model](algorithms.md), [calendar tests](../tests/test_capture_calendar.py) | Passing checks does not guarantee that a person follows the plan |
+The overload example asks for **240 minutes** inside **180 available minutes**.
+The proposed postponement changes the plan only after confirmation. If a solver
+times out, the result is unknown; it is not proof that the tasks cannot fit.
 
-OR-Tools supplies the established solver. The integration of constraints,
-conflict explanations, movement accounting and independent checking is the
-current implementation value. The source is copyable; it is not evidence of a
-proprietary scheduling algorithm or an established business moat.
+## Record progress before replanning
 
-## What to validate next
+For a 90-minute draft with 30 minutes completed, enter **30** in the cumulative
+completed-work field. The next plan needs 60 minutes for the draft and 30 for
+its dependent review. Entering progress is explicit: no timer or activity monitor
+updates it for you. [Example input](../examples/partial-progress.json).
 
-1. Observe new users trying the example, creating their own week and explaining
-   why a conflict occurred. Measure where they fail before adding more controls.
-2. With consent, collect minimal anonymous reproductions of confusing schedules,
-   estimate changes and calendar imports. Preserve failures in regression tests.
-3. Test whether people can update progress and reuse plans over several weeks.
-   This would inform workflow fit; current solver benchmarks cannot answer it.
+Pin times that must remain fixed. Otherwise the solver accounts for movement
+from the previous plan while satisfying the updated constraints. Check the new
+timetable before exporting it. [Progress tests](../tests/test_progress.py).
 
-A well-maintained calendar compatibility suite and real usability evidence could
-accumulate over time. No retention, time-saving or cross-calendar reliability
-statistics have been established. Team scheduling, reminders and automatic
-calendar writes remain outside this release. See [usage and data boundaries](usage.md).
+## How the result is checked
 
-## Version availability
+OR-Tools CP-SAT places tasks within available intervals, with deadlines,
+prerequisites and split rules. A separate checker validates the returned schedule
+before calendar export. The published 48-case benchmark uses synthetic fixtures;
+it measures feasible scheduling, not the time people save.
+[Algorithm](algorithms.md) · [Results and failures](results.md).
 
-This guide is included in v0.2.1. The existing browser examples and
-partial-progress fixture also run in v0.2.0. The v0.2.1 patch updates the browser
-version label and documentation; scheduling behavior is unchanged.
+Use **保存项目** for a JSON backup. Calendar export creates a local `.ics` file;
+import it into your calendar yourself. Supported recurrence rules and data
+storage details are in [usage](usage.md).
+
+[Recreate the README screenshot](screenshots.md). The pictured planner is v0.2.1;
+this documentation update does not change the scheduling code.
