@@ -2,7 +2,7 @@
 
 Put tasks into the hours you actually have. When they don't fit, see what needs to change.
 
-[中文](README.zh-CN.md) · [Usage](docs/usage.md) · [v0.2.1 prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1)
+[中文](README.zh-CN.md) · [Usage](docs/usage.md) · [v0.2.2 prerelease](https://github.com/crown-sports/dayweave/releases/tag/v0.2.2)
 
 ![DayWeave schedules only the remaining work after completed minutes are recorded](docs/assets/remaining-work.png)
 
@@ -15,7 +15,7 @@ something changes. Export the result to your calendar as `.ics`.
 ## Open it
 
 Install **Python 3.12** from [python.org](https://www.python.org/downloads/), then
-download and unzip **Source code (zip)** from [v0.2.1](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1).
+download and unzip **Source code (zip)** from [v0.2.2](https://github.com/crown-sports/dayweave/releases/tag/v0.2.2).
 
 - Windows: double-click `Start-DayWeave.cmd`.
 - macOS: double-click `Start-DayWeave.command`.

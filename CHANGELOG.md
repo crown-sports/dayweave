@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.2 — 2026-10-23 (prerelease)
 
 Keep task and calendar input controls stable while editing, so Tab and the next click survive field commits. Refresh handlers after undo/import, preserve progress and dependency updates, and check the workflow in Chromium. New personal plans start next week when this week’s default free hours have all ended; existing plans and examples retain their dates.
 
