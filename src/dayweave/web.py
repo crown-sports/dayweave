@@ -92,7 +92,15 @@ def create_app(model_endpoint: str | None = None, model: str = "qwen3:4b") -> Fa
 
     @app.get("/assets/{name}")
     async def asset(name: str) -> Response:
-        modules = {"app.js", "calendar.js", "controls.js", "project_state.js", "input_editor.js", "capture_sheet.js"}
+        modules = {
+            "app.js",
+            "calendar.js",
+            "controls.js",
+            "project_state.js",
+            "input_editor.js",
+            "capture_sheet.js",
+            "editor_dom.js",
+        }
         allowed = {**dict.fromkeys(modules, "text/javascript"), "workbench.css": "text/css"}
         if name not in allowed:
             return Response(status_code=404)

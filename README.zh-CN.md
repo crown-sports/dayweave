@@ -2,7 +2,7 @@
 
 把事情放进真正有空的时间里。排不下时，看清需要改什么。
 
-[English](README.md) · [使用说明](docs/usage.md) · [v0.2.1 预发布](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1)
+[English](README.md) · [使用说明](docs/usage.md) · [v0.2.2 预发布](https://github.com/crown-sports/dayweave/releases/tag/v0.2.2)
 
 ![记录已完成工时后，DayWeave 只安排剩余工作](docs/assets/remaining-work.png)
 
@@ -14,7 +14,7 @@
 ## 打开就能试
 
 先从 [python.org](https://www.python.org/downloads/) 安装 **Python 3.12**，
-再到 [v0.2.1 发布页](https://github.com/crown-sports/dayweave/releases/tag/v0.2.1)下载 **Source code (zip)** 并解压。
+再到 [v0.2.2 发布页](https://github.com/crown-sports/dayweave/releases/tag/v0.2.2)下载 **Source code (zip)** 并解压。
 
 - Windows：双击 `Start-DayWeave.cmd`。
 - macOS：双击 `Start-DayWeave.command`。

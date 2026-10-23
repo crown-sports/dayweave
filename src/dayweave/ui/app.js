@@ -394,9 +394,17 @@ async function loadExample() {
 
 /** Start a personal plan with editable daytime windows and the actual current-time boundary. */
 async function newProject() {
-  const empty = await (
+  let empty = await (
     await api(`/api/example/balanced?day=${monday()}&timezone=Asia%2FShanghai`)
   ).json();
+  const now = nowLocal(empty.timezone);
+  const nextWeek = empty.available.every((window) => window.end.slice(0, 16) <= now);
+  if (nextWeek) {
+    const day = shiftDay(empty.start, 7);
+    empty = await (
+      await api(`/api/example/balanced?day=${day}&timezone=Asia%2FShanghai`)
+    ).json();
+  }
   if (project) snapshot();
   project = {
     ...empty,
@@ -406,7 +414,9 @@ async function newProject() {
     example: false,
   };
   changed();
-  notice("新计划已建立。先填写你的事项，再按实际情况调整可以安排的时间。");
+  notice(nextWeek
+    ? "本周的默认空闲时段已经结束，已创建下周计划。填写事项后可调整日期和空闲时间。"
+    : "新计划已建立。先填写你的事项，再按实际情况调整可以安排的时间。");
 }
 
 $("solve").addEventListener("click", solve);
